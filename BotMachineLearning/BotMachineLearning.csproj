@@ -7,16 +7,21 @@
 
   <ItemGroup>
     <None Remove="Dados\DadosLearning.json" />
+    <None Remove="Dados\DadosLearningSimples.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Dados\DadosLearning.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dados\DadosLearningSimples.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Polling" Version="1.1.1" />
   </ItemGroup>
 
 </Project>

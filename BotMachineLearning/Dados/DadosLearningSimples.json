@@ -1,0 +1,16 @@
+{
+  "Itens": [
+    {
+      "Resposta": [ "Vou bem!" ],
+      "Pergunta": [ "Oi, como vai?" ]
+    },
+    {
+      "Resposta": [ "Tudo sim, Obrigado." ],
+      "Pergunta": [ "Tudo bem com voce?" ]
+    },
+    {
+      "Resposta": [ "Sim", "Nao"],
+      "Pergunta": [ "Vem sempre aqui?" ]
+    }
+  ]
+}

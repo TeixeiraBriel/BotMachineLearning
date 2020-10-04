@@ -6,7 +6,7 @@ namespace BotMachineLearning.Entidades
 {
     public class Dados
     {
-        public string[] Perguntas { get; set; }
-        public List<Respostas> Respostas { get; set; }
+        public string[] Pergunta { get; set; }
+        public string[] Resposta { get; set; }
     }
 }
