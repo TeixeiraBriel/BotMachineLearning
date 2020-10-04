@@ -1,0 +1,30 @@
+{
+  "Itens": [
+    {
+      "Perguntas": [ "Pergunta01?", "1" ],
+      "Respostas": [
+        {
+          "txtResposta": "resposta01",
+          "qtdUsada": "1"
+        },
+        {
+          "txtResposta": "resposta02",
+          "qtdUsada": "5"
+        }
+      ]
+    },
+    {
+      "Perguntas": [ "Pergunta02?", "1" ],
+      "Respostas": [
+        {
+          "txtResposta": "resposta01",
+          "qtdUsada": "1"
+        },
+        {
+          "txtResposta": "resposta02",
+          "qtdUsada": "5"
+        }
+      ]
+    }
+  ]
+}
