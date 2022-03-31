@@ -7,6 +7,7 @@ using BotMachineLearning.Entidades;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static PollingLibrary.Polling;
+using System.Threading;
 
 namespace BotMachineLearning
 {
@@ -27,9 +28,6 @@ namespace BotMachineLearning
             }
 
             dados = data.Itens.SelectMany(i => i.Pergunta, (i, chave) => new { chave, valor = i.Resposta }).ToDictionary(i => i.chave, i => i.valor);
-
-            //dados = data.Itens.SelectMany(i => i.id, (i, chave) => new { chave, valor = i.texto })
-            //.ToDictionary(i => i.chave, i => i.valor);
 
         }
 
@@ -131,7 +129,7 @@ namespace BotMachineLearning
                 if (x[0] == "")
                 {
                     Console.WriteLine("Bot: Desculpa, nao sei responder.");
-                    //EditDic(new string[] { pergunta }, new string[] { "Desculpa, nao sei responder." });
+                    Console.WriteLine("");
                 }
                 else
                 {
@@ -145,6 +143,15 @@ namespace BotMachineLearning
             {
                 CriarDic(new string[] { pergunta });
                 Console.WriteLine("Bot: Desculpa, nao sei responder.");
+                Console.WriteLine("");
+            }
+        }
+
+        static void fecharApp(string pergunta)
+        {
+            if (pergunta == "-EXIT-")
+            {
+                Environment.Exit(-1);
             }
         }
 
@@ -154,6 +161,11 @@ namespace BotMachineLearning
             string pergunta = "";
             string responderBot = "";
             bool cortouFluxo = false;
+            int limpador = 0;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.Title = "Tomas, o Robô";
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Black;
             while (true)
             {
                 if (!responderBot.Contains("?"))
@@ -161,8 +173,10 @@ namespace BotMachineLearning
                     Random rand = new Random();
                     string perguntaBot = _Itens[rand.Next(_Itens.Count)].Pergunta[0];
                     Console.WriteLine("Bot: " + perguntaBot);
+                    Console.Write("Humano: ");
                     responderBot = Console.ReadLine();
                     cortouFluxo = true;
+                    fecharApp(responderBot);
                     if (!responderBot.Contains("?") && responderBot != "")
                     {
                         EditDic(new string[] { perguntaBot }, new string[] { responderBot });
@@ -177,11 +191,27 @@ namespace BotMachineLearning
                 {
                     if (!cortouFluxo)
                     {
+                        Console.Write("Humano: ");
                         pergunta = Console.ReadLine();
                     }
+                    fecharApp(pergunta);
                     fluxoComum(pergunta);
                     responderBot = "";
                     cortouFluxo = false;
+                }
+                limpador++;
+                if (limpador > 10)
+                {
+                    Console.WriteLine("Vamos limpar a janela de dialogo.");
+                    Console.WriteLine("Limpando...");
+                    Thread.Sleep(800);
+                    Console.WriteLine("3");
+                    Thread.Sleep(800);
+                    Console.WriteLine("2");
+                    Thread.Sleep(800);
+                    Console.WriteLine("1");
+                    Console.Clear();
+                    limpador = 0;
                 }
                 LerJsonCriarDic();
             }
